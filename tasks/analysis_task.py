@@ -1,12 +1,10 @@
 from crewai import Task
 
 
-def create_analysis_task(agent, research_output):
+def create_analysis_task(agent, research_task):
     return Task(
-        description=f"""
-        Analyze the research provided below:
-
-        {research_output}
+        description="""
+        Analyze the research produced by the researcher.
 
         Identify the most important findings, compare the information,
         and produce a clear, logical analysis.
@@ -19,4 +17,5 @@ def create_analysis_task(agent, research_output):
         - Remaining uncertainties
         """,
         agent=agent,
+        context=[research_task],
     )
